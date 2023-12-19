@@ -1,9 +1,6 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-console.log("PGURL", process.env.POSTGRES_URL);
-console.log("PGURL_NONPOOL", process.env.POSTGRES_URL_NON_POOLING);
-
 export const env = createEnv({
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
