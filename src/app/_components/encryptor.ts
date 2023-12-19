@@ -1,4 +1,5 @@
 import JSEncrypt from "jsencrypt";
+import invariant from "tiny-invariant";
 
 export const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChDjdJXHp4bMtRsoPA49uXZYAi
@@ -10,5 +11,7 @@ r+RBLOmU90xAnlscBwIDAQAB
 export function encrypt(message: string) {
   const encryptor = new JSEncrypt();
   encryptor.setPublicKey(PUBLIC_KEY);
-  return encryptor.encrypt(message);
+  const encrypted = encryptor.encrypt(message);
+  invariant(encrypted, "Encryption failed");
+  return encrypted;
 }

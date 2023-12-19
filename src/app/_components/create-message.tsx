@@ -24,7 +24,10 @@ export function CreatePost() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          createMessage.mutate({ senderEmail: email, message });
+          createMessage.mutate({
+            senderEmail: email,
+            message: encrypt(message),
+          });
         }}
         className="flex flex-col gap-2"
       >
