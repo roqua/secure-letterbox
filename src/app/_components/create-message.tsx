@@ -52,22 +52,30 @@ export function CreatePost() {
           {createMessage.isLoading ? "Submitting..." : "Send us a message"}
         </button>
       </form>
+
       <div className="flex flex-col gap-4 bg-white/10 p-8">
-        <h2>Hoe werkt deze pagina?</h2>
+        <h2 className="text-xl font-bold">Hoe werkt deze pagina?</h2>
         <div>
-          Alle berichten worden versleuteld opgeslagen in de database. Hiervoor
-          hebben we een RSA sleutelpaar gegenereerd. De publieke sleutel is:
-          <pre className="mt-4 break-all font-mono">{PUBLIC_KEY}</pre>
+          Alle berichten worden versleuteld opgeslagen in de database (uw
+          emailadres bewaren we onversleuteld). Hiervoor gebruiken we een
+          4096-bits RSA sleutelpaar.
         </div>
-        <div>
-          Op basis daarvan versleuteld uw bericht naar:
-          <div className="mt-4 w-full break-all font-mono">
-            {message && encrypt(message)}
+        {message && (
+          <div>
+            Op basis daarvan versleuteld uw bericht naar:
+            <div className="mt-4 w-full break-all rounded-md bg-black/20 p-4 font-mono">
+              {encrypt(message)}
+            </div>
           </div>
-        </div>
+        )}
         <div>
           U kunt deze versleutelde waarde opslaan met het formulier hierboven,
           maar u mag dit ook naar ons emailen.
+        </div>
+        <div>
+          U kunt ook zelf versleutelde berichten maken. Onze publieke sleutel
+          is:
+          <pre className="mt-4 break-all font-mono">{PUBLIC_KEY}</pre>
         </div>
       </div>
     </div>
